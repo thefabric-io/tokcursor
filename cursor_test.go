@@ -48,7 +48,7 @@ func Test_cursor_Key(t *testing.T) {
 		{"unordered", map[string]string{"key2": "value2", "key1": "value1"}, "key1,key2"},
 	}
 	for _, tt := range tests {
-		c := &cursor{
+		c := &B64Cursor{
 			keyValues: tt.kvs,
 		}
 		want := tt.want
@@ -73,7 +73,7 @@ func Test_cursor_String(t *testing.T) {
 		{"unordered", map[string]string{"key2": "value2", "key1": "value1"}, "key1:value1,key2:value2"},
 	}
 	for _, tt := range tests {
-		c := &cursor{
+		c := &B64Cursor{
 			keyValues: tt.kvs,
 		}
 		want := tt.want
