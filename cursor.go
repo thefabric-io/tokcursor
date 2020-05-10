@@ -96,7 +96,7 @@ func (c B64Cursor) Key() string {
 }
 
 // String returns the readable token including all key:value pairs excluding the redundant keys.
-func (c *B64Cursor) String() string {
+func (c B64Cursor) String() string {
 	s := ""
 	i := 0
 
