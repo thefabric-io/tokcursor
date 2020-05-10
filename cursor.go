@@ -19,7 +19,7 @@ type Cursor interface {
 	PageSize() int32
 }
 
-// NewCursor returns a base64 key:value cursor implementation.
+// NewB64Cursor returns a base64 key:value cursor implementation.
 func NewB64Cursor(token string, pageSize int32) (Cursor, error) {
 	c := &B64Cursor{
 		token:    []byte(token),
@@ -37,7 +37,7 @@ func NewB64Cursor(token string, pageSize int32) (Cursor, error) {
 	return c, nil
 }
 
-// cursor represents a base64 key:value cursor implementation. It contains:
+// B64Cursor represents a base64 key:value cursor implementation. It contains:
 // - raw token, a base64 encoded representation of the key:value token
 // - token, a []byte representation of the key:value values i.e. []byte("key1:value1,key2:value2")
 // - keyValues, a map[string]string structured key:value pairs of the cursor
@@ -64,7 +64,7 @@ func (c B64Cursor) KeyValues() map[string]string {
 	return c.keyValues
 }
 
-// Page size returns the page size of the pagination.
+// PageSize returns the page size of the pagination.
 func (c B64Cursor) PageSize() int32 {
 	return c.pageSize
 }
