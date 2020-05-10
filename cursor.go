@@ -21,6 +21,10 @@ type Cursor interface {
 
 // NewB64Cursor returns a base64 key:value cursor implementation.
 func NewB64Cursor(token string, pageSize int32) (Cursor, error) {
+	if pageSize < 1 {
+		return nil, ErrPageSizeInvalid
+	}
+
 	c := &B64Cursor{
 		token:    []byte(token),
 		pageSize: pageSize,
@@ -145,3 +149,6 @@ func keyValues(token []byte) (map[string]string, error) {
 // string is incorrect i.e "key:value:key, key2:value2" is incorrect because of the
 // incorrect format of the first element "key:value:key".
 var ErrTokenFormatIncorrect = errors.New("token format incorrect")
+
+// ErrPageSizeInvalid is returned if the page size is strictly inferior to 1
+var ErrPageSizeInvalid = errors.New("page size must be > 0")
